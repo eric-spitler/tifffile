@@ -576,7 +576,7 @@ Read an image stack from a series of TIFF files with a file name pattern:
 
 from __future__ import division, print_function
 
-__version__ = '2019.7.26.2'
+__version__ = '2019.7.26.3'
 __docformat__ = 'restructuredtext en'
 __all__ = (
     'imwrite',
@@ -1862,7 +1862,7 @@ class TiffWriter(object):
 
             # write image data
             dataoffset = fh.tell()
-            skip = align - dataoffset % align
+            skip = (align - (dataoffset % align)) % align
             fh.seek(skip, 1)
             dataoffset += skip
             if contiguous:
